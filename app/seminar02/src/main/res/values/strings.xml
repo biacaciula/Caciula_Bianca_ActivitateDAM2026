@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">seminar02</string>
+    <string name="deschide_activitate">Deschide activitate</string>
+    <string name="inapoi">inapoi</string>
 </resources>
