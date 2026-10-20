@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">seminar04</string>
+    <string name="apasa">Apasa</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="exemplu_ion">Exemplu: Ion</string>
+    <string name="enter">enter</string>
+    <string name="exemplu_100">Exemplu_100</string>
+    <string name="exemplu_2589">Exemplu_2589</string>
+    <string name="exemplu_automative">Exemplu_Automative</string>
+</resources>

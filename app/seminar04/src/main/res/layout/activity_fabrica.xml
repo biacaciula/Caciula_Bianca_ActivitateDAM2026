@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FabricaActivity">
+
+    <EditText
+        android:id="@+id/nrAngajati_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/exemplu_100"/>
+
+    <EditText
+        android:id="@+id/numeFabrica_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/codFabrica_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/exemplu_2589"/>
+
+    <EditText
+        android:id="@+id/domeniuActivitate_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/exemplu_automative"/>
+
+    <CheckBox
+        android:id="@+id/Ture_cb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lucreaza in ture?"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="preiaDate"
+        android:text="@string/enter"/>
+
+</LinearLayout>
