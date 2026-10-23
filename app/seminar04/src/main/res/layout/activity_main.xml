@@ -8,14 +8,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world"/>
     <EditText
         android:id="@+id/nume_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:hint="@string/exemplu_ion"/>
     <CheckBox
         android:id="@+id/esteZi_CB"
@@ -28,4 +25,18 @@
         android:onClick="culegeDate"
         android:text="@string/apasa"
         />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="introduDate"
+        android:text="Introdu Date"
+        />
+
+    <TextView
+        android:id="@+id/rezultat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+
 </LinearLayout>

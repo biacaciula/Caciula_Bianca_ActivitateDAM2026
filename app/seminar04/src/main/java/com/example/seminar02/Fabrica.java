@@ -1,6 +1,8 @@
 package com.example.seminar02;
 
-public class Fabrica {
+import java.io.Serializable;
+
+public class Fabrica implements Serializable {
 
     int nrAngajati;
     String numeFabrica;
