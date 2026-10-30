@@ -16,7 +16,7 @@ public class Fabrica implements Serializable {
         this.numeFabrica = numeFabrica;
         this.codFabrica = codFabrica;
         this.domeniuActivitate = domeniuActivitate;
-        this.lucreazaInTure=true;
+        this.lucreazaInTure=lucreazaInTure;
     }
     public String getNumeFabrica() {
         return numeFabrica;

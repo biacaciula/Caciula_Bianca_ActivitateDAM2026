@@ -19,8 +19,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.seminar02.Fabrica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
+    private ArrayList<Fabrica> listaFabrici = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +53,23 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==45 && resultCode==RESULT_OK && data!=null)
-        {
-            Fabrica fabrica=(Fabrica)data.getExtras().getSerializable("fabrica");
+        if(requestCode==45 && resultCode==RESULT_OK && data!=null) {
+            Fabrica fabrica = (Fabrica) data.getExtras().getSerializable("fabrica");
+            listaFabrici.add(fabrica);
             Toast.makeText(this, fabrica.toString(), Toast.LENGTH_LONG).show();
             TextView rezultat = findViewById(R.id.rezultat);
             String existing = rezultat.getText().toString();
-            rezultat.setText(existing + (!existing.isEmpty() ? "\n\n" : "") +fabrica.toString());
+            rezultat.setText(existing + (!existing.isEmpty() ? "\n\n" : "") + fabrica.toString());
         }
+        if(requestCode==46&&resultCode==RESULT_OK&&data!=null)
+        {
+            listaFabrici=(ArrayList<Fabrica>)data.getSerializableExtra("lista");
+        }
+    }
+
+    public void adaugaFabrici(View view) {
+        Intent it = new Intent(this, ListaActivity.class);
+        it.putExtra("lista", listaFabrici);
+        startActivityForResult(it, 46);
     }
 }
