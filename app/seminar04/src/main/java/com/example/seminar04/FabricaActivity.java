@@ -27,6 +27,21 @@ public class FabricaActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Intent it=getIntent();
+        if(it.hasExtra("fabrica")){
+            Fabrica fabrica=it.getParcelableExtra("fabrica");
+            EditText nrAngajatiET=findViewById(R.id.nrAngajati_et);
+            EditText numeFabricaET=findViewById(R.id.numeFabrica_et);
+            EditText codFabricaET=findViewById(R.id.codFabrica_et);
+            EditText domeniuActivitateET=findViewById(R.id.domeniuActivitate_et);
+            CheckBox lucreazaTureCB=findViewById(R.id.Ture_cb);
+
+            nrAngajatiET.setText(String.valueOf(fabrica.getNrAngajati()));
+            numeFabricaET.setText(fabrica.getNumeFabrica());
+            codFabricaET.setText(String.valueOf(fabrica.getCodFabrica()));
+            domeniuActivitateET.setText(fabrica.getDomeniuActivitate());
+            lucreazaTureCB.setChecked(fabrica.isLucreazaInTure());
+   }
     }
 
     public void preiaDate(View view) {

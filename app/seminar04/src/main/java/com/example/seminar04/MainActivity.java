@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==45 && resultCode==RESULT_OK && data!=null) {
-            Fabrica fabrica = (Fabrica) data.getExtras().getSerializable("fabrica");
+            Fabrica fabrica = data.getParcelableExtra("fabrica");
             listaFabrici.add(fabrica);
             Toast.makeText(this, fabrica.toString(), Toast.LENGTH_LONG).show();
             TextView rezultat = findViewById(R.id.rezultat);
@@ -63,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
         }
         if(requestCode==46&&resultCode==RESULT_OK&&data!=null)
         {
-            listaFabrici=(ArrayList<Fabrica>)data.getSerializableExtra("lista");
+            listaFabrici=data.getParcelableArrayListExtra("lista");
         }
     }
 
     public void adaugaFabrici(View view) {
         Intent it = new Intent(this, ListaActivity.class);
-        it.putExtra("lista", listaFabrici);
+        it.putParcelableArrayListExtra("lista",listaFabrici);
         startActivityForResult(it, 46);
     }
 }

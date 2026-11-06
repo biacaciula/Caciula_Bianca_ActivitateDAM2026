@@ -1,8 +1,9 @@
 package com.example.seminar02;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Fabrica implements Serializable {
+public class Fabrica implements Parcelable {
 
     int nrAngajati;
     String numeFabrica;
@@ -18,6 +19,41 @@ public class Fabrica implements Serializable {
         this.domeniuActivitate = domeniuActivitate;
         this.lucreazaInTure=lucreazaInTure;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    protected Fabrica(Parcel in)
+    {
+        nrAngajati=in.readInt();
+        numeFabrica=in.readString();
+        codFabrica=in.readInt();
+        domeniuActivitate=in.readString();
+        lucreazaInTure=in.readByte()!=0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+        dest.writeInt(nrAngajati);
+        dest.writeString(numeFabrica);
+        dest.writeInt(codFabrica);
+        dest.writeString(domeniuActivitate);
+        dest.writeByte((byte)(lucreazaInTure ? 1:0));
+    }
+
+    public static final Creator<Fabrica> CREATOR=new Creator<Fabrica>(){
+        @Override
+        public Fabrica createFromParcel(Parcel in){
+            return new Fabrica(in);
+        }
+        @Override
+        public Fabrica[] newArray(int size){
+            return new Fabrica[size];
+        }
+    };
     public String getNumeFabrica() {
         return numeFabrica;
     }
