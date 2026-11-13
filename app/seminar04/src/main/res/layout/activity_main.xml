@@ -45,4 +45,10 @@
         android:onClick="adaugaFabrici"
         android:text="Vezi lista fabrici"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="deschideActivitate"
+        android:text="Deschide activitate"/>
+
 </LinearLayout>

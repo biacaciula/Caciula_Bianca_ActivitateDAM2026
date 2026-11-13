@@ -72,4 +72,9 @@ public class MainActivity extends AppCompatActivity {
         it.putParcelableArrayListExtra("lista",listaFabrici);
         startActivityForResult(it, 46);
     }
+
+    public void deschideActivitate(View view) {
+        Intent it=new Intent(this,ImaginiActivity.class);
+        startActivity(it);
+    }
 }
