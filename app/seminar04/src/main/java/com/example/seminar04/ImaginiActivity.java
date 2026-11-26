@@ -1,9 +1,15 @@
 package com.example.seminar04;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,25 +46,55 @@ public class ImaginiActivity extends AppCompatActivity {
         linkuriImagini.add("https://www.ahkrumaenien.ro/var/site/storage/images/_aliases/image_1920/6/4/9/2/152946-2-ger-DE/27702448de79-Industrie.jpg");
         linkuriImagini.add("https://www.sap.com/romania/resources/media_10a478f53e2c63dce483efbf17f039c449aa71fa1.jpg?width=1200&format=pjpg&optimize=medium");
 
+        String[] texte = {"Descriere 1", "Descriere 2", "Descriere 3", "Descriere 4", "Descriere 5"};
+        String[] linkuriPagini = {"LINK_PAGINA_1", "LINK_PAGINA_2", "LINK_PAGINA_3",
+                "LINK_PAGINA_4", "LINK_PAGINA_5"};
+
         Executor executor = Executors.newSingleThreadExecutor();
-        Handler handler=new Handler(Looper.myLooper());
+        Handler handler = new Handler(Looper.getMainLooper());
 
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                for(String link:linkuriImagini)
-                {
-                    HttpURLConnection con=null;
-                    try{
-                        URL url=new URL(link);
-                        con=(HttpURLConnection) url.openConnection();
-                        InputStream is=con.getInputStream();
-                        //lista.add(BitmapFactory.decodeStream(is));
-                    }catch(IOException e)
-                    {
-
+                List<Bitmap> bitmaps = new ArrayList<>();
+                for (String link : linkuriImagini) {
+                    HttpURLConnection con = null;
+                    try {
+                        URL url = new URL(link);
+                        con = (HttpURLConnection) url.openConnection();
+                        InputStream is = con.getInputStream();
+                        bitmaps.add(BitmapFactory.decodeStream(is));
+                    } catch (IOException e) {
+                        Log.e("ImaginiActivity", "Eroare la descarcare: " + link);
+                        bitmaps.add(null);
+                    } finally {
+                        if (con != null) con.disconnect();
                     }
                 }
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        lista = new ArrayList<>();
+                        for (int i = 0; i < linkuriImagini.size(); i++) {
+                            lista.add(new Imagini(texte[i], bitmaps.get(i), linkuriPagini[i]));
+                        }
+
+                        ListView lv = findViewById(R.id.imagini);
+                        ImaginiAdapter adapter = new ImaginiAdapter(getApplicationContext(),
+                                lista, R.layout.item_imagini);
+                        lv.setAdapter(adapter);
+
+                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                Intent it = new Intent(getApplicationContext(), WebViewActivity.class);
+                                it.putExtra("link", lista.get(i).getLink());
+                                startActivity(it);
+                            }
+                        });
+                    }
+                });
             }
         });
     }
